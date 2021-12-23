@@ -59,6 +59,10 @@ module "hub-vm" {
   name = "HUBVM1"
   prefix = "${var.hub_prefix}-${upper(var.hub_location)}"
   subnet_id = azurerm_subnet.hub_subnet1.id
+  depends_on = [
+    azurerm_virtual_network_gateway_connection.onprem_to_hub,
+    azurerm_virtual_network_gateway_connection.hub_to_onprem
+  ]
 }
 
 
@@ -122,6 +126,10 @@ module "onprem-vm" {
   name = "ONPREMVM1"
   prefix = "${var.onprem_prefix}-${upper(var.onprem_location)}"
   subnet_id = azurerm_subnet.onprem_subnet1.id
+  depends_on = [
+    azurerm_virtual_network_gateway_connection.onprem_to_hub,
+    azurerm_virtual_network_gateway_connection.hub_to_onprem
+  ]
 }
 
 //Connections
