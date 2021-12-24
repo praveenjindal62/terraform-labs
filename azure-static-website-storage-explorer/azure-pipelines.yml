@@ -27,6 +27,7 @@ steps:
     script: 'git clone https://github.com/praveenjindal62/static-website-template.git'
 
 - task: TerraformTaskV2@2
+  displayName: "terraform init"
   inputs:
     provider: 'azurerm'
     command: 'init'
@@ -36,4 +37,12 @@ steps:
     backendAzureRmStorageAccountName: 'terraformstatepjepam'
     backendAzureRmContainerName: 'terraformstate'
     backendAzureRmKey: 'terraform.tfstate'
+
+- task: TerraformTaskV2@2
+  displayName: "terraform destroy"
+  inputs:
+    provider: 'azurerm'
+    command: 'destroy'
+    workingDirectory: '$(System.DefaultWorkingDirectory)\azure-static-website-storage-explorer'
+    
 
