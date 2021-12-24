@@ -9,6 +9,9 @@ trigger:
 pool:
   name: Default
 
+workspace:
+  clean: all
+  
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
@@ -22,3 +25,24 @@ steps:
   displayName: "Clone static website git"
   inputs:
     script: 'git clone https://github.com/praveenjindal62/static-website-template.git'
+
+- task: TerraformTaskV2@2
+  displayName: "terraform init"
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)\azure-static-website-storage-explorer'
+    backendServiceArm: 'Visual Studio Professional Subscription(1)(a5917f77-047e-4ec0-bbf9-49b052c5ee62)'
+    backendAzureRmResourceGroupName: 'terraform-global'
+    backendAzureRmStorageAccountName: 'terraformstatepjepam'
+    backendAzureRmContainerName: 'terraformstate'
+    backendAzureRmKey: 'terraform.tfstate'
+
+- task: TerraformTaskV2@2
+  displayName: "terraform destroy"
+  inputs:
+    provider: 'azurerm'
+    command: 'destroy'
+    workingDirectory: '$(System.DefaultWorkingDirectory)\azure-static-website-storage-explorer'
+    
+
