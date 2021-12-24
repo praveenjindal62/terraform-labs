@@ -22,3 +22,14 @@ steps:
   displayName: "Clone static website git"
   inputs:
     script: 'git clone https://github.com/praveenjindal62/static-website-template.git'
+
+- task: TerraformTaskV2@2
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'Visual Studio Professional Subscription(1)(a5917f77-047e-4ec0-bbf9-49b052c5ee62)'
+    backendAzureRmResourceGroupName: 'terraform-global'
+    backendAzureRmStorageAccountName: 'terraformstatepjepam'
+    backendAzureRmContainerName: 'terraformstate'
+    backendAzureRmKey: 'terraform.tfstate'
+
