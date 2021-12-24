@@ -1,0 +1,4 @@
+$SERVICE_PRINCIPAL = $env:SERVICE_PRINCIPAL
+$SECRET_KEY = $env:SECRET_KEY
+$TENANT_ID = $env:TENANT_ID
+az login --service-principal -u $SERVICE_PRINCIPAL -p $SECRET_KEY --tenant $TENANT_ID
