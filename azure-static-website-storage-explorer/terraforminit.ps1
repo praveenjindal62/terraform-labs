@@ -1,0 +1,1 @@
+terraform init -backend-config="access_key=$(az storage account keys list --resource-group "terraform-global" --account-name "terraformstatepjepam" --query '[0].value' -o tsv)"
