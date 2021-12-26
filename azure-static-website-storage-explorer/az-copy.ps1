@@ -4,7 +4,7 @@ Get-Content $env:jsonPath
 Get-Content $env:jsonPath
 $data = Get-Content $env:jsonPath | ConvertFrom-Json
 Set-Variable -name storage_account_name -value $data."storage-account-name".value
-cd $(System.DefaultWorkingDirectory)\azure-static-website-storage-explorer\static-website-template
+cd .\azure-static-website-storage-explorer\static-website-template
 $containerexists = $(az storage container list --account-name  $storage_account_name --query "[].name" | 
 Select-String '\$web').length
 if($containerexists -gt 0){
