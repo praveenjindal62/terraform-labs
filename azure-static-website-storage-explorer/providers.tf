@@ -12,12 +12,12 @@ terraform {
     }
   }
 
-    backend "azurerm" {
-        resource_group_name  = "terraform-global"
-        storage_account_name = "terraformstatepjepam"
-        container_name       = "terraformstate"
-        key                  = "terraform.tfstate"
-    }
+  backend "azurerm" {
+      resource_group_name  = "terraform-global"
+      storage_account_name = "terraformstatepjepam"
+      container_name       = "terraformstate"
+      key                  = "terraform.tfstate"
+  }
 }
 provider "azurerm" {
 
